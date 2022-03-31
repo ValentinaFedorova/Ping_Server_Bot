@@ -35,32 +35,6 @@ import System.Cron.Schedule
   
 main :: IO ()
 main = do
-    {-test "http://bit.icc.ru"-}
-    --test "http://irk.ru"
-    --pingServer "http://cris.icc.ru" --!!!!
-    --pingServer "http://irk.ru" "http://irk.ru"
-    --getUrlFromFile "test.txt"
-    --checkAll 1
-    
-    --tids <- execSchedule $ addJob (doTesting) "* * * * *"
     botStartup
     
-    --pingServer "http://irk.ru"
-    --pingServer "http://bit.icc.ru"
-    --print (splitBy ' ' "1  url")
-    {-send_crash_mail "http://bit.icc.ru"-}
-
-    {-print $ getResponseHeader "Content-Type" response
-    LC.putStrLn "ok"-}
-
-    
-    
-
-   
-{-main = putStrLn "Hello, Haskell1111!"
-http://bit.icc.ru
-
-warp
-
-main = httpLBS "http://news.ycombinator.com"
--}
+ 
