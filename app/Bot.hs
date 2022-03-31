@@ -139,62 +139,6 @@ sendChatAction  model =
     pure NoAction
 
 
-handleAction2 ::  ChatModel -> Eff Action ChatModel
-handleAction2 model =
-  model <# do
-        let s_url = badSite
-        liftIO $ doTesting
-        --liftIO $ print "checking"
-        {-
-        let chId=bchatId
-        case chId of
-          Just ch -> do
-            let ch2 = pack ch 
-            let chtId2 = ChatId (fromIntegral ch2)
-            replyTo chtId2 (toReplyMessage "oktest")
-          Nothing -> do
-            replyString "Done"
-            -- pure NoAction
--}
-        
-        {-
-        let s_url = badSite
-        let chId=bchatId
-        let schId=unpack chId
--}
-        -- let uid = badSiteUserId 
-        -- Just  (BUser userId username created chartId) <- liftIO $ getUserById uid
-        --liftIO $ print unpack $ chId
-        -- let i = fromIntegral chartId ::Int
-        -- let chtId2 = ChatId (toInteger i)
-        -- let chatId=SomeChatId chtId2
-
-        -- replyTo chatId (toReplyMessage "oktest")
-        chId<-liftIO $ bchatId
-        -- case chId of
-        --   Just ch -> do
-        --     let ch2 = pack ch 
-        --     let chtId2 = ChatId (fromIntegral ch2)
-        --     replyTo chtId2 (toReplyMessage "oktest")
-        --   Nothing -> do
-        --     replyString "Done"
-        -- case chId of
-        --   Just value -> do
-        --     let i = fromIntegral chId ::Integer
-        --     let chtId2 = ChatId (toInteger i)
-        --     let chatId=SomeChatId chtId2
-            
-            
-        --     replyTo chatId (toReplyMessage "oktest")
-        --   Nothing    -> do
-        --     liftIO $ print "ok"
-        
-        pure NoAction
-        
-        
-
-        --replyString "Hi. There's a command list: \n 1) add url \n 2) remove url \n 3) show - print all urls \n 4) ping - to ping all added url"
-        -- sendChatAction  model
 
 testing :: BotJob ChatModel Action
 testing = BotJob {botJobSchedule ="* * * * *", botJobTask = handleAction2 }
@@ -246,7 +190,6 @@ getUrl msg = do
   return x
    
 
---analyseLog :: [UrlState] -> флаг первого вызова -> количество пингов -> String
 
 analyseLog :: [UrlState] -> Int -> Int -> String -> String
 analyseLog ((UrlState url 1 wtime):t) 1 cnt site = site++", all is ok. Pinging started at "++show wtime
@@ -278,27 +221,11 @@ pingServer url = do
         Right result -> saveOkState url
 
 
-    
-    --putStrLn "Testing finished"
 serverList :: [SiteUrl] -> [String] -> [String]
 serverList [] l = l
 serverList ((SiteUrl site_url state userId ):t) l = serverList t (site_url:l)
 
 
-
-
-
-checkAll :: Int -> IO ()
-checkAll usrId = do
-    print "ok1"
-    {--
-    db_conn <- SQ.open "test2.db"
-    srvlist <- SQ.queryNamed db_conn "SELECT * FROM UrlList WHERE userId = :userId" [":userId" := usrId] :: IO [SiteUrl]
-    --let lst <- serverList srvlist []
-    mapM_ (pingServer) $ serverList srvlist []
-    print "ok"
-    SQ.close db_conn
- --}
 f :: [String] -> [Int]
 f = Prelude.map read    
 
@@ -307,14 +234,6 @@ printList :: [String] -> String -> String
 printList (h:t) "" = printList t h
 printList (h:t) headstr = headstr
 
-{-
-loopList :: [String] -> String
-
-loopList (h:t) 
-  | pingServer h h
-  | loopList t
-  | h == [] = 
-  -}
 
 addFunc :: String -> IO()
 addFunc mystr = do
