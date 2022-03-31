@@ -1,0 +1,34 @@
+cabal-version:      2.4
+name:               ping-project2
+version:            0.1.0.0
+synopsis:
+
+-- A longer description of the package.
+-- description:
+homepage:
+
+-- A URL where users can report bugs.
+-- bug-reports:
+license:            NONE
+author:             Valya
+maintainer:         konstantin_fedorov_03@mail.ru
+
+-- A copyright notice.
+-- copyright:
+category:           Network
+extra-source-files: CHANGELOG.md
+
+library:
+  source-dirs: src
+
+executable ping-project2
+    main-is:          Main.hs
+
+    -- Modules included in this executable, other than Main.
+    other-modules: Schema, Bot, DBUtils
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:    base ^>=4.14.3.0, network, http-conduit, bytestring, smtp-mail, persistent, persistent-sqlite, persistent-template,time,sqlite-simple,text, mtl, monad-logger, monad-control, telegram-bot-simple, cron
+    hs-source-dirs:   app
+    default-language: Haskell2010
